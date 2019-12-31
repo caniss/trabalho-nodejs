@@ -1,22 +1,26 @@
 import * as Joi from '@hapi/joi';
 
 const params = Joi.object({
-  id: Joi.number().required()
+    id: Joi.number().required()
 });
 
 const payload = Joi.object({
-  valor: Joi.number().required(),
+    userId: Joi.number().required(),
+    cart: Joi.array().items(Joi.object({
+        productId: Joi.number().required(),
+        quantity: Joi.number().required()
+    }))
 });
 
 export const detail = {
-  params
+    params
 };
 
 export const create = {
-  payload
+    payload
 };
 
 export const update = {
-  params,
-  payload
+    params,
+    payload
 };

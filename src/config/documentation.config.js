@@ -1,12 +1,13 @@
 import Inert from '@hapi/inert';
 import Vision from '@hapi/vision';
 import HapiSwagger from 'hapi-swagger';
-import {name, version } from '../../package.json';
+import {name, version, description } from '../../package.json';
 
 const options = {
   info: {
     title: name,
-    version
+    version,
+    description
   }
 };
 
