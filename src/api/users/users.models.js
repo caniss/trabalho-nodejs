@@ -2,13 +2,18 @@ import { Model } from 'sequelize';
 import Bcrypt from 'bcryptjs';
 
 export default (sequelize, dataTypes) => {
-  class User extends Model {}
+  class User extends Model { }
 
   User.init({
+    id: {
+      type: dataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     name: dataTypes.STRING,
-    document: {  type: dataTypes.STRING, 
-            unique: true,
-            primaryKey: true
+    document: {
+      type: dataTypes.STRING,
+      unique: true
     },
     email: dataTypes.STRING,
     password: dataTypes.STRING

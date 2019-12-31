@@ -4,12 +4,16 @@ export default (sequelize, dataTypes) => {
   class Order extends Model {}
 
   Order.init({
-    valor: dataTypes.DECIMAL
+    id: { 
+        type: dataTypes.INTEGER, 
+        autoIncrement: true,
+        primaryKey: true  
+    },
+    value: dataTypes.DECIMAL
   }, { sequelize, modelName: 'order', tableName: 'orders' });
 
   Order.associate = models => {
-    models.user.belongsTo(models.user);
-    models.product.hasMany(models.product, { as: 'products' });
+    models.order.belongsTo(models.user);
   };
 
   return Order;
