@@ -5,8 +5,11 @@ const params = Joi.object({
 });
 
 const payload = Joi.object({
-  description: Joi.string().min(3).max(100).required()
-});
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required(),
+  name: Joi.string().required(),
+  document: Joi.string().required()
+})
 
 export const detail = {
   params

@@ -21,7 +21,7 @@ export default () => ([
   {
     plugin: HapiRouter,
     options: {
-      routes: 'src/api/orders/**.routes.js'
+      routes: 'src/api/**/**.routes.js'
     }
   },
   {
