@@ -3,10 +3,7 @@ import Env from './environment.config';
 
 const DATABASES = {
   development: {
-    default: new Sequelize(Env.DB_NAME, Env.DB_USERNAME, Env.DB_PASSWORD, {
-      host: Env.DB_HOST,
-      port: Env.DB_PORT,
-      dialect: 'mysql',
+    default: new Sequelize(Env.DB_NAME, {
       logging: Env.DEBUG,
       define: {
         freezeTableName: true,
