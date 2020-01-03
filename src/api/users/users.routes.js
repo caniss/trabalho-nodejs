@@ -31,8 +31,9 @@ export default [
       validate: {
         payload: Schemas.payload,
         failAction: function (request, h, err) {
-            
-          // err.output.payload.validation = "";
+
+          delete err.output.payload.validation;
+
           return err;
         }
       },
