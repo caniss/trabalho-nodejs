@@ -1,8 +1,10 @@
 import ProductsDAO from './products.dao';
+import CategoriesDAO from './products.dao';
 
 const productsDAO = new ProductsDAO();
+const categoriesDAO = new CategoriesDAO();
 
-export default class CategoriesBusiness {
+export default class ProductsBusiness {
 
   async list({ params }) {
     return productsDAO.findAll(params);
@@ -14,10 +16,15 @@ export default class CategoriesBusiness {
     return productsDAO.findByID(id);
   }
 
-  async create({ payload, auth }) {
-    const { id: userId } = auth.credentials;
+  async create({ payload }) {
+    const { categoryId: id } = payload;
 
-    return productsDAO.create({ ...payload, userId });
+    const hasCategory = await categoriesDAO.find({ id });
+    if (!hasCategory) {
+      throw Boom.notAcceptable('Categoria invalida!');
+    }
+
+    return produtosDAO.create(payload);
   }
 
   async update({ params, payload }) {

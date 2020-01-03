@@ -28,7 +28,14 @@ export default [
     config: {
       auth: false,
       tags: ['api', 'users'],
-      validate: Schemas.create
+      validate: {
+        payload: Schemas.payload,
+        failAction: function (request, h, err) {
+            
+          // err.output.payload.validation = "";
+          return err;
+        }
+      },
     }
   },
   {
@@ -38,7 +45,7 @@ export default [
     config: {
       auth: false,
       tags: ['api', 'users'],
-      validate: Schemas.create
+      validate: Schemas.login
     }
   },
   {

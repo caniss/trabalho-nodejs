@@ -15,7 +15,10 @@ export default (sequelize, dataTypes) => {
       type: dataTypes.STRING,
       unique: true
     },
-    email: dataTypes.STRING,
+    email: {
+      type: dataTypes.STRING,
+      unique: true
+    },
     password: dataTypes.STRING
   }, { sequelize, modelName: 'user', tableName: 'users' });
 

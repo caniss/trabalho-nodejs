@@ -9,6 +9,10 @@ export default class UsersDAO {
     return User.findAll({ where });
   }
 
+  async findOne(where) {
+    return User.findOne({ where });
+  }
+
   async findByID(id) {
     return getObjectOr404(User, { where: { id } });
   }
