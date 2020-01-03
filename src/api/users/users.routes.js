@@ -28,15 +28,7 @@ export default [
     config: {
       auth: false,
       tags: ['api', 'users'],
-      validate: {
-        payload: Schemas.payload,
-        failAction: function (request, h, err) {
-
-          delete err.output.payload.validation;
-
-          return err;
-        }
-      },
+      validate: Schemas.create,
     }
   },
   {

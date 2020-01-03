@@ -7,7 +7,12 @@ const params = Joi.object({
   id: Joi.number().required()
 });
 
-export const payload = Joi.object({
+const failAction = function (request, h, err) {
+  delete err.output.payload.validation;
+  return err;
+}
+
+const payload = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
   name: Joi.string().required(),
@@ -24,12 +29,14 @@ export const detail = {
 };
 
 export const create = {
-  payload
+  payload,
+  failAction
 };
 
 export const update = {
   params,
-  payload
+  payload,
+  failAction
 };
 
 export const login = {
