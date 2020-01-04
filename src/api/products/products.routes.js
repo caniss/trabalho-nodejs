@@ -9,6 +9,7 @@ export default [
     path: '/products',
     handler: controller.list,
     config: {
+      auth: false,
       tags: ['api', 'products'],
     }
   },
@@ -17,6 +18,7 @@ export default [
     path: '/products/{id}',
     handler: controller.detail,
     config: {
+      auth: false,
       tags: ['api', 'products'],
       validate: Schemas.detail
     }
