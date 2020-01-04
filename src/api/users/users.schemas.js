@@ -21,7 +21,7 @@ const payload = Joi.object({
 
 const paylogin = Joi.object({
   email: Joi.string().email().required(),
-  senha: Joi.string().min(6).required()
+  password: Joi.string().min(6).required()
 });
 
 export const detail = {

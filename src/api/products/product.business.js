@@ -19,7 +19,7 @@ export default class ProductsBusiness {
   async create({ payload }) {
     const { categoryId: id } = payload;
 
-    const hasCategory = await categoriesDAO.find({ id });
+    const hasCategory = await categoriesDAO.findByID(id);
     if (!hasCategory) {
       throw Boom.notAcceptable('Categoria invalida!');
     }

@@ -8,14 +8,14 @@ export default class ProductsDAO {
   async findAll(params) {
     return Product.findAll({
       where: params,
-      include: [ 'categories' ]
+      include: [ 'category' ]
     });
   }
 
   async findByID(id) {
     return getObjectOr404(Product, {
       where: { id },
-      include: [ 'categories' ]
+      include: [ 'category' ]
     });
   }
 

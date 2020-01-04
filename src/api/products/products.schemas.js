@@ -5,17 +5,24 @@ const params = Joi.object({
 });
 
 const payload = Joi.object({
+  categoryId: Joi.number().required(),
   description: Joi.string().min(3).max(100).required(),
   value: Joi.number().required(),
   quantity: Joi.number().required()
 });
+
+const failAction = function (request, h, err) {
+  delete err.output.payload.validation;
+  return err;
+}
 
 export const detail = {
   params
 };
 
 export const create = {
-  payload
+  payload,
+  failAction
 };
 
 export const update = {
