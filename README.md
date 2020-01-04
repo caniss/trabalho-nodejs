@@ -11,7 +11,7 @@ Desenvolvimento de Plataforma de Vendas, com os seguintes modulos
 ## Requisitos
 
 [nodejs](https://nodejs.org/) v12.x LTS
-mysql or sqlite3
+mysql ou sqlite3
 
 ## Documentação
 
@@ -75,3 +75,8 @@ Realizar a alteração do arquivos `.env` para variáveis de ambiente de produç
 ```bash
 npm start
 ```
+# Nome dos Alunos:
+
+  - Bruno da Silva Pádua - 22292,
+  - Éder Tadeu Fernandes Martins - 22303,
+  - Thaísa Honório Morandini - ?.
