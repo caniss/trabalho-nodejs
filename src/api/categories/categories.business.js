@@ -15,9 +15,8 @@ export default class CategoriesBusiness {
   }
 
   async create({ payload, auth }) {
-    const { id: userId } = auth.credentials;
-
-    return categoriesDAO.create({ ...payload, userId });
+    
+    return categoriesDAO.create(payload);
   }
 
   async update({ params, payload }) {

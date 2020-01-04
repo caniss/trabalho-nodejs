@@ -1,10 +1,10 @@
-import { CREATED, NO_CONTENT } from 'http-status';
+import { CREATED, NO_CONTENT, OK } from 'http-status';
 
 import CategoriesBusiness from './categories.business';
 
 const categoriesBusiness = new CategoriesBusiness();
 
-export default class PostsController {
+export default class CategoriesController {
 
   async list(request, h) {
     return await categoriesBusiness.list(request);
@@ -21,7 +21,9 @@ export default class PostsController {
   }
 
   async update(request, h) {
-    return await categoriesBusiness.update(request);
+    const category = await categoriesBusiness.update(request);
+
+    return h.response(category).code(OK);
   }
 
   async destroy(request, h) {
