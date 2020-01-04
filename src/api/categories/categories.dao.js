@@ -3,7 +3,7 @@ import { getObjectOr404 } from '../utils/database.utils';
 
 const Category = instances.getModel('category');
 
-export default class CategorysDAO {
+export default class CategoriesDAO {
 
   async findAll(params) {
     return Category.findAll({
@@ -15,6 +15,10 @@ export default class CategorysDAO {
     return getObjectOr404(Category, {
       where: { id }
     });
+  }
+
+  async findOne(id) {
+    return Category.findOne({ where: {id: id} });
   }
 
   async create(data) {

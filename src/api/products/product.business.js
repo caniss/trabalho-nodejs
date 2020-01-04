@@ -1,5 +1,6 @@
 import ProductsDAO from './products.dao';
-import CategoriesDAO from './products.dao';
+import CategoriesDAO from '../categories/categories.dao';
+import Boom from "@hapi/boom";
 
 const productsDAO = new ProductsDAO();
 const categoriesDAO = new CategoriesDAO();
@@ -17,12 +18,11 @@ export default class ProductsBusiness {
   }
 
   async create({ payload }) {
-    const { categoryId: id } = payload;
+    const { categoryId: id } = payload;  
+    const category = await categoriesDAO.findOne(id);
 
-    
-    const category = await categoriesDAO.findByID(id);
     if (!category) {
-      throw Boom.notAcceptable('Category not found!');
+      throw Boom.badData('Category not found!');
     }
 
     return productsDAO.create(payload);
