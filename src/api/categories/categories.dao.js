@@ -7,15 +7,13 @@ export default class CategorysDAO {
 
   async findAll(params) {
     return Category.findAll({
-      where: params,
-      include: [ 'categories' ]
+      where: params
     });
   }
 
   async findByID(id) {
     return getObjectOr404(Category, {
-      where: { id },
-      include: [ 'categories' ]
+      where: { id }
     });
   }
 

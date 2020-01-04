@@ -4,6 +4,11 @@ const params = Joi.object({
   id: Joi.number().required()
 });
 
+const failAction = function (request, h, err) {
+  delete err.output.payload.validation;
+  return err;
+}
+
 const payload = Joi.object({
   description: Joi.string().min(3).max(100).required()
 });
@@ -13,7 +18,8 @@ export const detail = {
 };
 
 export const create = {
-  payload
+  payload,
+  failAction
 };
 
 export const update = {

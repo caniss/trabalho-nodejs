@@ -4,6 +4,11 @@ const params = Joi.object({
   id: Joi.number().required()
 });
 
+const failAction = function (request, h, err) {
+  delete err.output.payload.validation;
+  return err;
+}
+
 const payload = Joi.object({
   categoryId: Joi.number().required(),
   description: Joi.string().min(3).max(100).required(),
@@ -11,10 +16,7 @@ const payload = Joi.object({
   quantity: Joi.number().required()
 });
 
-const failAction = function (request, h, err) {
-  delete err.output.payload.validation;
-  return err;
-}
+
 
 export const detail = {
   params
