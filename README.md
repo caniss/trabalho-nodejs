@@ -1,5 +1,7 @@
 # Trabalho NodeJS
-Projeto da disciplina de NodeJs da Unifacef.
+
+
+Projeto da disciplina DESENVOLVIMENTO WEB/REST COM NODE.
 
 Desenvolvimento de Plataforma de Vendas, com os seguintes modulos
   - Cadastro de cliente/usuário,
@@ -32,6 +34,8 @@ DB_NAME="sqlite:trabalho-node.sqlite"
 Defina as variáveis de ambiente `DB_ *` e altere o `database.config.js` para trabalhar com o mysql.
 
 `.env`
+
+Necessário definir configurações do MySql no arquivo `.env` conforme servidor local.
 
 ```dotenv
 DB_HOST=""
