@@ -50,7 +50,7 @@ export default class OrdersDAO {
         });
       }
     }
-    return await this.findByID(pedido.id);
+    return await this.findByID(order.id);
   }
 
   async update(id, data) {
