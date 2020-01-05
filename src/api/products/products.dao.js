@@ -11,7 +11,7 @@ export default class ProductsDAO {
   async findAll(params) {
     
     if(params.description){
-        params.description = { [op.like]: `%${params.description}%`};
+        params.description = { [operator.like]: `%${params.description}%`};
     }
     return Product.findAll({
       where: params,
