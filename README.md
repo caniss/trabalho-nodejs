@@ -79,4 +79,4 @@ npm start
 
   - Bruno da Silva Pádua - 22292,
   - Éder Tadeu Fernandes Martins - 22303,
-  - Thaísa Honório Morandini - ?.
+  - Thaísa Honório Morandini - 22452.
