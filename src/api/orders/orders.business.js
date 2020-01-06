@@ -1,9 +1,11 @@
 import OrdersDAO from './orders.dao';
 import ProductsDAO from '../products/products.dao';
-import  Boom from '@hapi/boom';
+import Boom from '@hapi/boom';
+import CartsDAO from '../carts/carts.dao';
 
 const ordersDAO = new OrdersDAO();
-const productsDAO = new ProductsDAO();  
+const productsDAO = new ProductsDAO();
+const cartsDao = new CartsDAO();
 
 export default class OrdersBusiness {
 
@@ -18,45 +20,25 @@ export default class OrdersBusiness {
   }
 
   async create({ payload }) {
-    let total = 0;  
 
-    const { id: userId, cart } = payload;
-    
-    for(let product of cart){
-      let resultProduct = await productsDAO.findByID(product.id);
+    let order = await ordersDAO.create(payload);
 
-      if(resultProduct.dataValues.quantity < product.quantity){
-        throw Boom.notAcceptable('Quantidade não tem em estoque');
-      }
+    const { cart } = payload;
 
-      resultProduct.dataValues.quantity -= product.quantity;
-      await productsDAO.update(product.id, resultProduct.dataValues);
+    payload.value = await cartsDao.processCart(cart, order);
 
-      total = parseFloat(total) + (parseFloat(resultProduct.value)
-              * parseFloat(product.quantity));
-      
-    }
+    return ordersDAO.update(order.id, payload);
 
-    payload.value = total;
-    return ordersDAO.create(payload);
   }
 
   async update({ params, payload }) {
     const { id } = params;
-    const { userId, cart } = payload;
+    const { cart } = payload;
 
-    if(cart){
-      for(let product of cart){
-        let resultProduct = await productsDAO.findByID(product.id);
-        if(resultProduct.dataValues.quantity < product.quantity){
-          throw Boom.notAcceptable('Quantidade não tem em estoque');
-        }
+    await cartsDao.returnProductsCart(id);
 
-        resultProduct.dataValues.quantity -= product.quantity;
-        await productsDAO.update(product.id, resultProduct.dataValues);
-      }
-    }
-    
+    payload.value = await cartsDao.processCart(cart, id);
+
     return ordersDAO.update(id, payload);
   }
 

@@ -15,8 +15,13 @@ export default (sequelize, dataTypes) => {
   }, { sequelize, modelName: 'product', tableName: 'products' });
 
   Product.associate = models => {
-    models.product.belongsToMany(models.order, {through: 'cart'});
-    models.product.belongsTo(models.category, {foreignKey: 'categoryId'});
+    Product.belongsToMany(models.order, {
+      through: 'cart',
+      as: 'orders',
+      foreignKey: 'productId',
+      otherKey: 'orderId'
+    });
+    Product.belongsTo(models.category, {foreignKey: 'categoryId'});
   };
 
   return Product;
