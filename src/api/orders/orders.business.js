@@ -23,9 +23,9 @@ export default class OrdersBusiness {
 
     let order = await ordersDAO.create(payload);
 
-    const { cart } = payload;
+    const { cart } = payload;    
 
-    payload.value = await cartsDao.processCart(cart, order);
+    payload.value = await cartsDao.processCart(cart, order.id);
 
     return ordersDAO.update(order.id, payload);
 

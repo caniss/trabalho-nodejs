@@ -19,8 +19,7 @@ export default (sequelize, dataTypes) => {
         through: 'cart',
         as: 'products',
         foreignKey: 'orderId',
-        otherKey: 'productId',
-        attributes: ['value']
+        otherKey: 'productId'
       });
   };
 

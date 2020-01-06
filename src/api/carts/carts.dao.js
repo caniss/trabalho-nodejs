@@ -1,6 +1,7 @@
 import { instances } from 'hapi-sequelizejs'
 import { getObjectOr404 } from '../utils/database.utils';
 import ProductsDAO from '../products/products.dao';
+import Bomm from '@hapi/boom';
 
 const productsDAO = new ProductsDAO();
 
@@ -43,7 +44,7 @@ export default class CartsDAO {
   async processCart(cart, orderId) {
 
     if (!cart)
-      throw Boom.badData('Carrinho vazio');
+      throw Bomm.badData('Carrinho vazio');
 
     let total = 0;
 
@@ -54,7 +55,7 @@ export default class CartsDAO {
       let product = result.dataValues;
 
       if (product.quantity < item.quantity) {
-        throw Boom.badData('Estoque insuficiente');
+        throw Bomm.badData('Estoque insuficiente');
       }
 
       product.quantity -= item.quantity;
